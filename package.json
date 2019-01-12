@@ -1,21 +1,21 @@
 {
-  "name": "startkit",
+  "name": "WebKit",
   "version": "1.0.0",
-  "description": "",
+  "description": "WebKit",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OlifemB/startkit.git"
+    "url": "git+https://github.com/OlifemB/WebKit.git"
   },
   "author": "Olifem",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OlifemB/startkit/issues"
+    "url": "https://github.com/OlifemB/WebKit/issues"
   },
-  "homepage": "https://github.com/OlifemB/startkit#readme",
+  "homepage": "https://github.com/OlifemB/WebKit#readme",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.2.3",
