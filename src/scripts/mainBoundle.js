@@ -1,0 +1,3 @@
+function kek(){
+  alert('kek');
+}
