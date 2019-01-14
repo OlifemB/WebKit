@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AveDemid/template2html.git"
+    "url": "git+https://github.com/OlifemB/WebKit.git"
   },
   "author": "Demid Borodin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AveDemid/template2html/issues"
+    "url": "https://github.com/OlifemB/WebKit/issues"
   },
-  "homepage": "https://github.com/AveDemid/template2html#readme",
+  "homepage": "https://github.com/OlifemB/WebKit#readme",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.2.3",
