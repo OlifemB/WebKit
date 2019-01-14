@@ -4,15 +4,16 @@ import ejs from "gulp-ejs";
 import postcss from "gulp-postcss";
 import svgSprite from "gulp-svg-sprite";
 import svgo from "gulp-svgo";
-import imageMin from "gulp-imagemin";
+import imageMin from "gulp-imageMin";
+import webpackStream from "webpack-stream";
 
 // Server
 const server = browserSync.create();
 
-const serverTask = (done) => {
+const serverTask = done => {
   server.init({
     server: {
-      baseDir: './dist'
+      baseDir: "./dist"
     }
   });
   done();
@@ -25,7 +26,7 @@ const templates = () =>
     .pipe(dest("dist"))
     .pipe(server.stream());
 
-watch('src/**/*.ejs', series(templates));
+watch("src/**/*.ejs", series(templates));
 
 // Styles
 const styles = () =>
@@ -34,22 +35,14 @@ const styles = () =>
     .pipe(dest("dist/styles"))
     .pipe(server.stream());
 
-watch('src/**/*.css', styles);
-
-// Styles
-const scripts = () =>
-  src("src/scripts/*.js")
-    .pipe(dest("dist/scripts"))
-    .pipe(server.stream());
-
-watch('src/**/*.js', scripts);
+watch("src/**/*.css", styles);
 
 // Fonts
 const fonts = () =>
-  src('src/fonts/**/*')
-    .pipe(dest('dist/fonts'));
+  src("src/fonts/**/*")
+    .pipe(dest("dist/fonts"));
 
-watch('src/fonts/**/*', fonts);
+watch("src/fonts/**/*", fonts);
 
 // SVG minification to use them inline or <img /> tag.
 const svgoTask = () =>
@@ -62,29 +55,76 @@ watch("src/images/svgo/**/*.svg", svgoTask);
 // SVG sprite
 const svgSpriteTask = () =>
   src("src/images/svg-sprites/**/*.svg")
-    .pipe(svgSprite({
-      dest: ".",
-      mode: {
-        symbol: {
-          dest: '.'
+    .pipe(
+      svgSprite({
+        dest: ".",
+        mode: {
+          symbol: {
+            dest: "."
+          }
         }
-      }
-    }))
-    .pipe(svgo({
-      js2svg: {
-        pretty: true
-      },
-      plugins: [
-        {cleanupIDs: false},
-      ]
-    }))
-    .pipe(dest('dist/images'));
+      })
+    )
+    .pipe(
+      svgo({
+        js2svg: {
+          pretty: true
+        },
+        plugins: [{cleanupIDs: false}]
+      })
+    )
+    .pipe(dest("dist/images"));
 
 watch("src/images/svg-sprites/**/*.svg", svgSpriteTask);
 
 const imageminTask = () =>
-  src("src/images/imagemin/*")
+  src("src/images/raster/*")
     .pipe(imageMin())
     .pipe(dest("dist/images/raster"));
 
-export default series(parallel(templates, styles, scripts, fonts, svgoTask, svgSpriteTask, imageminTask), serverTask);
+watch("src/images/raster/*", imageminTask);
+
+
+const favicon = () =>
+  src("src/images/favicon/*")
+    .pipe(dest("dist/favicon"));
+
+const webpack = (cb) => {
+  const webpackConfig = {
+    mode: 'development',
+    watch: true,
+    output: {
+      filename: "mainBoundle.js"
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: "babel-loader"
+        }
+      ]
+    }
+  };
+
+  src("src/scripts/mainBoundle.js")
+    .pipe(webpackStream(webpackConfig))
+    .pipe(dest("dist/scripts"))
+    .pipe(server.stream());
+
+  cb();
+};
+
+export default series(
+  parallel(
+    templates,
+    styles,
+    fonts,
+    svgoTask,
+    svgSpriteTask,
+    imageminTask,
+    favicon,
+    webpack
+  ),
+  serverTask
+);

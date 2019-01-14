@@ -1,29 +1,30 @@
 {
-  "name": "WebKit",
-  "version": "1.0.0",
-  "description": "WebKit",
+  "name": "template2html",
+  "version": "0.0.1",
+  "description": "Boolerplate for easy create HTML/CSS from you Template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OlifemB/WebKit.git"
+    "url": "git+https://github.com/AveDemid/template2html.git"
   },
-  "author": "Olifem",
+  "author": "Demid Borodin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OlifemB/WebKit/issues"
+    "url": "https://github.com/AveDemid/template2html/issues"
   },
-  "homepage": "https://github.com/OlifemB/WebKit#readme",
+  "homepage": "https://github.com/AveDemid/template2html#readme",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.2.3",
     "@babel/register": "^7.0.0",
-    "autoprefixer": "^9.3.1",
-    "bootstrap": "^4.1.3",
+    "autoprefixer": "^9.4.5",
+    "babel-loader": "^8.0.5",
+    "bootstrap": "^4.2.1",
     "browser-sync": "^2.26.3",
-    "cssnano": "^4.1.7",
+    "cssnano": "^4.1.8",
     "gulp": "^4.0.0",
     "gulp-ejs": "^3.3.0",
     "gulp-imagemin": "^5.0.3",
@@ -33,6 +34,8 @@
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.1.0",
     "postcss-preset-env": "^6.4.0",
-    "postcss-pseudo-class-enter": "^3.0.1"
+    "postcss-pseudo-class-enter": "^3.0.1",
+    "prettier": "^1.15.3",
+    "webpack-stream": "^5.2.1"
   }
 }
