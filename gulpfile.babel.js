@@ -78,12 +78,23 @@ const svgSpriteTask = () =>
 watch("src/images/svg-sprites/**/*.svg", svgSpriteTask);
 
 const imageminTask = () =>
-  src("src/images/raster/*")
+  src("src/images/**/*.*")
     .pipe(imageMin())
-    .pipe(dest("dist/images/raster"));
+    .pipe(dest("dist/images"));
 
-watch("src/images/raster/*", imageminTask);
+watch("src/images/**/*", imageminTask);
 
+const images = () =>
+  src("src/images/**/*.*")
+    .pipe(dest("dist/images"));
+
+watch("src/images/**/*", images);
+
+const scripts = () =>
+  src(["src/scripts/**/*.js"],["!src/scripts/mainBoundle.js"])
+    .pipe(dest("dist/scripts/"));
+
+watch("src/scripts/**/*.js", scripts);
 
 const favicon = () =>
   src("src/images/favicon/*")
@@ -119,10 +130,12 @@ export default series(
   parallel(
     templates,
     styles,
+    scripts,
     fonts,
-    svgoTask,
-    svgSpriteTask,
-    imageminTask,
+    //svgoTask,
+    //svgSpriteTask,
+    //imageminTask,
+    images,
     favicon,
     webpack
   ),
