@@ -1,0 +1,16 @@
+<form action="" class="form">
+    <div class="form__wrapper">
+        <input id="phone" type="text" class="form__input" placeholder="+7(000)000-00-00"/>
+        <input id="address" type="text" class="form__input" disabled/>
+        <input id="submit" type="submit"/>
+    </div>
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', ()=> {
+    var phoneMask = new IMask(
+      document.querySelector('#phone'), {
+        mask: '+{7}(900)000-00-00'
+      });
+  })
+</script>

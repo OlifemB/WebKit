@@ -1,5 +1,5 @@
 {
-  "name": "template2html",
+  "name": "WebKit",
   "version": "0.0.1",
   "description": "Boolerplate for easy create HTML/CSS from you Template",
   "main": "index.js",
@@ -37,5 +37,6 @@
     "postcss-pseudo-class-enter": "^3.0.1",
     "prettier": "^1.15.3",
     "webpack-stream": "^5.2.1"
-  }
+  },
+  "dependencies": {}
 }

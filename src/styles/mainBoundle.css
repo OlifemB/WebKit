@@ -1,5 +1,6 @@
+@import "include/vars.css";
+@import "include/common.css";
+@import "include/fonts.css";
 
-@import "common/common.css";
-@import "common/fonts.css";
-
-/* Blocks */
+@import "blocks/grid.css";
+@import "blocks/spacing.css";
